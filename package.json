@@ -1,0 +1,34 @@
+{
+  "name": "kakeibobackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js", 
+    "server": "nodemon server.js", 
+    "serve": "nodemon server.js", 
+    "s": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewhiggins415/kakeibobackend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthewhiggins415/kakeibobackend/issues"
+  },
+  "homepage": "https://github.com/matthewhiggins415/kakeibobackend#readme",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.4.0",
+    "mongoose": "^6.2.4",
+    "passport": "^0.5.2",
+    "passport-http-bearer": "^1.0.1"
+  }
+}
