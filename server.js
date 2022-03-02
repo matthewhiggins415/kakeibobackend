@@ -1,7 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+require("dotenv").config()
 
+// require route files
+const exampleRoutes = require('./app/routes/example_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -22,12 +25,23 @@ const redesignDevPort = 3000
 
 const app = express()
 
+//cors 
+app.use(cors({ origin: `http://localhost:${redesignDevPort}` }))
+
 const port = process.env.PORT || serverDevPort 
 
 // establish database connection
 // use new version of URL parser
 // use createIndex instead of deprecated ensureIndex
 connectDB()
+
+// register route files
+app.use(exampleRoutes)
+
+// register error handling middleware
+// note that this comes after the route middlewares, because it needs to be
+// passed any error messages from them
+app.use(errorHandler)
 
 app.listen(port, () => {
     console.log('listening on port ' + port)
