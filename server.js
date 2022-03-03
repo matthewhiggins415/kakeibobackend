@@ -6,7 +6,7 @@ require("dotenv").config()
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes.js')
-
+const plaidRoutes = require('./app/routes/plaid_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -47,6 +47,7 @@ app.use(express.urlencoded({ extended: true }))
 // register route files
 app.use(exampleRoutes)
 app.use(userRoutes)
+app.use(plaidRoutes)
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
