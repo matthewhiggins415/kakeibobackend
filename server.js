@@ -4,9 +4,9 @@ const cors = require('cors')
 require("dotenv").config()
 
 // require route files
-const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes.js')
 const plaidRoutes = require('./app/routes/plaid_routes')
+const expenseRoutes = require('./app/routes/expense_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -45,9 +45,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // register route files
-app.use(exampleRoutes)
 app.use(userRoutes)
 app.use(plaidRoutes)
+app.use(expenseRoutes)
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
