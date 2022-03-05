@@ -14,7 +14,7 @@ const ExpenseSchema = new mongoose.Schema({
     required: true
   }, 
   cost: {
-    type: Number, 
+    type: String, 
     required: true
   },
   owner: {

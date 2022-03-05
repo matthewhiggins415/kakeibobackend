@@ -67,7 +67,7 @@ router.delete('/expense/:id', requireToken, (req, res, next) => {
       .then(expense => {
         expense.deleteOne()
       })
-      .then(() => res.send(204))
+      .then(() => res.sendStatus(204))
       .catch(next)
 })
 
