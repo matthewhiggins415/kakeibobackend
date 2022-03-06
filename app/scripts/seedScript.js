@@ -1,20 +1,33 @@
 import Expense from "../models/expense";
 import mongoose from "mongoose";
 
+// Generate the random integer for cost 
+const randomInt = () => {
+  num = Math.floor(Math.random()*200)
+  return num
+}
+
+// THINGS TO DO: 
+// generate random cost 
+// generate random title 
+// generate random description 
+// generate random type 
+// put all these generators into a function that will create objects within expenses arr
+
 const expenses = [
   new Expense({
-    name: "Tony Stark",
-    location: {
-      x: 2,
-      y: 4,
-    },
+    title: "Skateboard",
+    description: "new hobby",
+    type: "cultural",
+    cost: "130",
+    owner: ""
   }),
   new Expense({
-    name: "Amelia",
-    location: {
-      x: 6,
-      y: 19,
-    },
+    title: "Groceries",
+    description: "food for the month",
+    type: "need",
+    cost: "100",
+    owner: ""
   }),
 ];
 
@@ -26,6 +39,7 @@ export const seedData = async () => {
     await Expense.deleteMany({});
 
     for (let i = 0; i < expenses.length; i++) {
+      //pass the id as parameter and add to expense object as owner attribute.
       expenses[i].save(function (err, result) {
         done++;
       });
