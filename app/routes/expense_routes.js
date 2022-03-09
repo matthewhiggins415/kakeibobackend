@@ -71,5 +71,13 @@ router.delete('/expense/:id', requireToken, (req, res, next) => {
       .catch(next)
 })
 
+// delete all expenses 
+router.delete('/expenses', requireToken, (req, res, next) => {
+  let userID = req.user.id
+  Expense.deleteMany({ owner: userID })
+  .then(() => res.sendStatus(204))
+  .catch(next)
+})
+
 
 module.exports = router 
