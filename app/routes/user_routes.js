@@ -155,6 +155,7 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
     .catch(next)
 })
 
+//get a user
 router.get('/user/:id', requireToken, (req, res, next) => {
   let id = req.params.id
   User.findById(id)
