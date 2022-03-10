@@ -24,7 +24,7 @@ const clientDevPort = 7165
 const app = express()
 
 //cors 
-app.use(cors({ origin: 'https://matthewhiggins415.github.io' || `http://localhost:${clientDevPort}` }))
+app.use(cors({ origin: 'https://matthewhiggins415.github.io/kakeibofrontend' }))
 
 
 // register passport authentication middleware
