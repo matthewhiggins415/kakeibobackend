@@ -15,7 +15,6 @@ const requestLogger = require('./lib/request_logger')
 // require configured passport authentication middleware
 const auth = require('./lib/auth')
 
-
 // define server and client ports
 // used for cors and local port declaration
 const serverDevPort = 4741
@@ -25,7 +24,8 @@ const app = express()
 
 //cors 
 // app.use(cors({ origin: 'https://matthewhiggins415.github.io' }))
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDevPort}` }))
+
+app.use(cors('*'))
 
 // register passport authentication middleware
 app.use(auth)
@@ -41,7 +41,6 @@ mongoose.connect(db, {
     useUnifiedTopology: true
   })
   
-
 // add `express.json` middleware which will parse JSON requests into
 // JS objects before they reach the route files.
 // The method `.use` sets up middleware for the Express application
