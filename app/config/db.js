@@ -1,18 +1,21 @@
 const mongoose = require('mongoose')
 require("dotenv").config()
 
-const connectDB = async () => {
-    try {
-      const con = await mongoose.connect(process.env.MONGO_URI, {
-        useNewUrlParser: true, 
-        useUnifiedTopology: true, 
-      })
+// creating a base name for the mongodb
+const mongooseBaseName = 'kakeibobackend'
 
-      console.log(`MongoDB connected: ${con.connection.host}`)
-    } catch (err) {
-      console.log(err)
-      process.exit(1)
-    }
+// create the mongodb uri for development and test
+const database = {
+  development: `mongodb://localhost/${mongooseBaseName}-development`,
+  test: `mongodb://localhost/${mongooseBaseName}-test`
 }
 
-module.exports = connectDB
+// Identify if development environment is test or development
+// select DB based on whether a test file was executed before `server.js`
+const localDb = process.env.TESTENV ? database.test : database.development
+
+// Environment variable DB_URI will be available in
+// heroku production evironment otherwise use test or development db
+const currentDb = process.env.DB_URI || localDb
+
+module.exports = currentDb

@@ -12,30 +12,35 @@ const expenseRoutes = require('./app/routes/expense_routes')
 const errorHandler = require('./lib/error_handler')
 const requestLogger = require('./lib/request_logger')
 
-// require database configuration logic
-// `db` will be the actual Mongo URI as a string
-const connectDB = require('./app/config/db')
-
 // require configured passport authentication middleware
 const auth = require('./lib/auth')
+
 
 // define server and client ports
 // used for cors and local port declaration
 const serverDevPort = 4741
 const clientDevPort = 7165
-const redesignDevPort = 3000
 
 const app = express()
 
 //cors 
-app.use(cors({ origin: `http://localhost:${redesignDevPort}` }))
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDevPort}` }))
+
+
+// register passport authentication middleware
+app.use(auth)
 
 const port = process.env.PORT || serverDevPort 
 
 // establish database connection
 // use new version of URL parser
 // use createIndex instead of deprecated ensureIndex
-connectDB()
+mongoose.connect(db, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  })
+  
 
 // add `express.json` middleware which will parse JSON requests into
 // JS objects before they reach the route files.
