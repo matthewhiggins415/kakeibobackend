@@ -23,7 +23,11 @@ const clientDevPort = 7165
 const app = express()
 
 //cors 
-app.use(cors({ origin: "*" }))
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://matthewhiggins415.github.io"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // register passport authentication middleware
 app.use(auth)
