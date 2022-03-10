@@ -1,4 +1,5 @@
 {
+  "homepage": "https://github.com/matthewhiggins415/kakeibobackend",
   "name": "kakeibobackend",
   "version": "1.0.0",
   "description": "",
@@ -18,7 +19,6 @@
   "bugs": {
     "url": "https://github.com/matthewhiggins415/kakeibobackend/issues"
   },
-  "homepage": "https://github.com/matthewhiggins415/kakeibobackend#readme",
   "dependencies": {
     "axios": "^0.26.0",
     "bcrypt": "^5.0.1",
