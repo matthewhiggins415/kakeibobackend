@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 require("dotenv").config()
 
+
 // require route files
 const userRoutes = require('./app/routes/user_routes.js')
 const plaidRoutes = require('./app/routes/plaid_routes')
@@ -15,33 +16,35 @@ const requestLogger = require('./lib/request_logger')
 // require configured passport authentication middleware
 const auth = require('./lib/auth')
 
+// require database configuration logic
+// `db` will be the actual Mongo URI as a string
+const db = require('./config/db')
+
 // define server and client ports
 // used for cors and local port declaration
 const serverDevPort = 4741
 const clientDevPort = 7165
 
+// establish database connection
+// use new version of URL parser
+// use createIndex instead of deprecated ensureIndex
+mongoose.connect(db, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+})
+
 const app = express()
 
 //cors 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://matthewhiggins415.github.io/kakeibofrontend"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDevPort}` }))
+
 
 // register passport authentication middleware
 app.use(auth)
 
 const port = process.env.PORT || serverDevPort 
 
-// establish database connection
-// use new version of URL parser
-// use createIndex instead of deprecated ensureIndex
-mongoose.connect(db, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-  })
   
 // add `express.json` middleware which will parse JSON requests into
 // JS objects before they reach the route files.

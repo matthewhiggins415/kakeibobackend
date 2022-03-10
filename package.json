@@ -1,14 +1,15 @@
 {
-  "homepage": "https://github.com/matthewhiggins415/kakeibobackend",
   "name": "kakeibobackend",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "test": "mocha --exit",
     "server": "nodemon server.js",
     "serve": "nodemon server.js",
-    "s": "nodemon server.js"
+    "s": "nodemon server.js",
+    "debug-server": "DEBUG=express:* nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.4.0",
     "mongoose": "^6.2.4",
+    "nodemon": "^2.0.15",
     "passport": "^0.5.2",
     "passport-http-bearer": "^1.0.1",
     "plaid": "^10.0.0"
