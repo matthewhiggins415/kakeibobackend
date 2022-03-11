@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 require("dotenv").config()
 
 // creating a base name for the mongodb
-const mongooseBaseName = 'kakeibobackend'
+const mongooseBaseName = 'kakeibo'
 
 // create the mongodb uri for development and test
 const database = {
