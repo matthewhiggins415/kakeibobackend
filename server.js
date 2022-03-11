@@ -36,8 +36,8 @@ mongoose.connect(db, {
 const app = express()
 
 //cors 
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDevPort}` }))
-
+// app.use(cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDevPort}` }))
+app.use(cors())
 
 // register passport authentication middleware
 app.use(auth)
