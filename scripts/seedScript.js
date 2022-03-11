@@ -1,4 +1,4 @@
-import Expense from "../models/expense";
+import Expense from "../app/models/expense";
 import mongoose from "mongoose";
 
 // Generate the random integer for cost 
