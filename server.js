@@ -38,13 +38,13 @@ const app = express()
 //cors 
 // app.use(cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDevPort}` }))
 app.use(cors())
+// app.use(cors(!origin))
 
 // register passport authentication middleware
 app.use(auth)
 
 const port = process.env.PORT || serverDevPort 
 
-  
 // add `express.json` middleware which will parse JSON requests into
 // JS objects before they reach the route files.
 // The method `.use` sets up middleware for the Express application
